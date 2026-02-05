@@ -739,6 +739,61 @@
     .footer-bottom span {
       color: #FFFFFF;
     }
+
+    /* ====== GRID OTROS SORTEOS ====== */
+    .other-draws-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .draw-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 0.8rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .draw-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      border-color: #D52B1E;
+    }
+
+    .draw-name {
+      color: #64748B;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .draw-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0033A0;
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      letter-spacing: 0.1em;
+      margin: 0.5rem 0;
+    }
+
+    .draw-series {
+      background: #FEF2F2;
+      color: #D52B1E;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid #FECACA;
+    }
   </style>
 </head>
 
@@ -828,6 +883,34 @@
       </div>
       </div>
       </div>
+      </div>
+    </section>
+
+    <!-- ====== OTROS SORTEOS ====== -->
+    <section>
+      <div class="container">
+        <h2>Otros Sorteos del Día</h2>
+        <p>Resultados de sorteos adicionales y sus respectivas series.</p>
+        <div class="other-draws-grid">
+          <!-- Card 1 -->
+          <div class="draw-card">
+            <div class="draw-name">Sorteo Mediodía</div>
+            <div class="draw-number">4 8 2 1</div>
+            <div class="draw-series">Serie 482</div>
+          </div>
+          <!-- Card 2 -->
+          <div class="draw-card">
+            <div class="draw-name">Sorteo Tarde</div>
+            <div class="draw-number">9 1 0 5</div>
+            <div class="draw-series">Serie 105</div>
+          </div>
+          <!-- Card 3 -->
+          <div class="draw-card">
+            <div class="draw-name">Sorteo Extra</div>
+            <div class="draw-number">3 3 7 8</div>
+            <div class="draw-series">Serie 992</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -992,6 +1075,7 @@
         <span>© 2026 Sorteos Oficiales. Todos los derechos reservados.</span>
         <span>Este sitio tiene fines informativos. La información oficial prevalecerá frente a cualquier
           inconsistencia.</span>
+        <span style="opacity: 0.6; font-size: 0.75rem;">v1.2.0</span>
       </div>
     </div>
   </footer>
