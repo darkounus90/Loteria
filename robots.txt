@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://pozomillonario.com.co/sitemap.xml
+
+# Crawl-delay para bots
+Crawl-delay: 1
+
+# Bots específicos
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebot
+Allow: /
