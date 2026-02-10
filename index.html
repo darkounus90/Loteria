@@ -881,6 +881,99 @@
       font-weight: 600;
       border: 1px solid #FECACA;
     }
+
+    /* ====== MODAL DE SEGURIDAD ====== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 51, 160, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: #FFFFFF;
+      width: 90%;
+      max-width: 480px;
+      padding: 2.5rem 2rem;
+      border-radius: 1.2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      transform: translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      border-top: 5px solid #D52B1E;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-icon {
+      width: 64px;
+      height: 64px;
+      background: #FEF2F2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      color: #D52B1E;
+    }
+
+    .modal-title {
+      color: #0033A0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .modal-text {
+      color: #475569;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .modal-text strong {
+      color: #0033A0;
+      font-weight: 600;
+    }
+
+    .btn-modal {
+      background: #D52B1E;
+      color: #FFFFFF;
+      border: none;
+      padding: 0.9rem 2.5rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(213, 43, 30, 0.25);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .btn-modal:hover {
+      background: #b91c0f;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(213, 43, 30, 0.3);
+    }
   </style>
 </head>
 
@@ -1024,15 +1117,15 @@
               </div>
               <div class="definition-item">
                 <span class="definition-term">Premio mayor</span>
-                <span class="definition-value">$ 500.000.000 CLP</span>
+                <span class="definition-value">$ 1.000.000.000 CLP</span>
               </div>
               <div class="definition-item">
                 <span class="definition-term">Segundo Premio</span>
-                <span class="definition-value">$ 50.000.000 CLP</span>
+                <span class="definition-value">$ 100.000.000 CLP</span>
               </div>
               <div class="definition-item">
                 <span class="definition-term">Tercer Premio</span>
-                <span class="definition-value">$ 10.000.000 CLP</span>
+                <span class="definition-value">$ 20.000.000 CLP</span>
               </div>
               <div class="definition-item">
                 <span class="definition-term">Estado</span>
@@ -1167,10 +1260,44 @@
     </div>
   </footer>
 
+  <!-- ====== MODAL DE SEGURIDAD ====== -->
+  <div class="modal-overlay" id="securityModal">
+    <div class="modal-content">
+      <div class="modal-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+      </div>
+      <h3 class="modal-title">Aviso de seguridad</h3>
+      <div class="modal-text">
+        <p>Bienvenido a la <strong>Plataforma Oficial de Sorteos</strong>.</p>
+        <p style="margin-top:0.8rem;">
+          Te recordamos que este es el único canal autorizado para consultar resultados.
+          Nunca solicitaremos claves, contraseñas ni datos bancarios.
+          <br><strong>¡Navega con confianza!</strong>
+        </p>
+      </div>
+      <button class="btn-modal" onclick="closeModal()">Entendido</button>
+    </div>
+  </div>
+
   <script>
     function toggleNav() {
       const nav = document.getElementById('mainNav');
       nav.classList.toggle('open');
+    }
+
+    // Modal logic
+    window.addEventListener('load', function () {
+      // Mostrar el modal después de un breve retraso
+      setTimeout(function () {
+        document.getElementById('securityModal').classList.add('active');
+      }, 800);
+    });
+
+    function closeModal() {
+      document.getElementById('securityModal').classList.remove('active');
     }
   </script>
 
