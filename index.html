@@ -533,6 +533,65 @@
       justify-content: space-between;
       color: #64748B;
     }
+
+    /* ====== MODAL DE AVISO ====== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 3rem;
+      border-radius: var(--border-radius-lg);
+      max-width: 480px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      transform: scale(0.95) translateY(20px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      border-top: 4px solid var(--color-primary);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-icon {
+      width: 64px;
+      height: 64px;
+      background-color: #FEE2E2;
+      color: var(--color-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    .btn-close-modal {
+      width: 100%;
+      margin-top: 1.5rem;
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -605,9 +664,12 @@
         <div class="result-card">
           <div class="result-title">Número Ganador Oficial</div>
           <div class="result-numbers">7 9 5 5</div>
-          <div class="result-footer">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            Validación de Acta N° 1483-PE
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); font-size: 0.8rem; color: var(--color-text-light); font-weight: 500;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-success)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              Certificado por Auditoría
+            </div>
+            <span style="background: var(--color-background-page); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--color-border); color: var(--color-text-main); font-weight: 600;">ACTA 1483</span>
           </div>
         </div>
 
@@ -658,15 +720,15 @@
               <tbody>
                 <tr>
                   <td class="td-label">Premio Mayor</td>
-                  <td class="td-value val-highlight">S/ 1,000,000 PEN</td>
+                  <td class="td-value val-highlight">S/ 4,000,000 PEN</td>
                 </tr>
                 <tr>
                   <td class="td-label">Segundo Premio</td>
-                  <td class="td-value">S/ 100,000 PEN</td>
+                  <td class="td-value">S/ 2,000,000 PEN</td>
                 </tr>
                 <tr>
                   <td class="td-label">Tercer Premio</td>
-                  <td class="td-value">S/ 20,000 PEN</td>
+                  <td class="td-value">S/ 500,000 PEN</td>
                 </tr>
                 <tr>
                   <td class="td-label">Formato</td>
@@ -768,6 +830,25 @@
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
   </a>
 
+  <!-- Aviso de Entrada Institutional -->
+  <div id="entry-modal" class="modal-overlay active">
+    <div class="modal-content">
+      <div class="modal-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      </div>
+      <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--color-text-main); margin-bottom: 0.75rem; letter-spacing: -0.02em;">Aviso de Seguridad</h3>
+      <p style="color: var(--color-text-muted); font-size: 1rem; line-height: 1.5; margin-bottom: 2rem;">
+        Bienvenido al portal oficial de <strong>Pozo Millonario</strong>. Para salvaguardar su integridad, le recordamos que los cobros solo se realizan a través de canales institucionales autorizados.
+      </p>
+      <button onclick="document.getElementById('entry-modal').classList.remove('active')" class="btn-whatsapp btn-close-modal">
+        Entendido y Aceptar
+      </button>
+      <div style="margin-top: 1.5rem; font-size: 0.75rem; color: var(--color-text-light);">
+        Lotería Institucional del Perú | 2026
+      </div>
+    </div>
+  </div>
+
   <style>
     .whatsapp-float {
       position: fixed;
@@ -790,5 +871,21 @@
       background-color: var(--color-success-hover);
     }
   </style>
+
+  <script>
+    // Pequeño script para cerrar modal con ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.getElementById('entry-modal').classList.remove('active');
+      }
+    });
+
+    // Asegurar que el modal se muestre (por si se recarga)
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById('entry-modal').classList.add('active');
+      }, 500);
+    };
+  </script>
 </body>
 </html>
